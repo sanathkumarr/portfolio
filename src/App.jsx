@@ -15,7 +15,7 @@ const App = () => {
   return (
     <div className="relative text-green-300 overflow-hidden">
       <BackgroundAnimation />
-      <div className="relative z-10 backdrop-blur-sm bg-black/50 min-h-screen">
+      <div className="relative z-10   min-h-screen">
         <Navbar />
         <Hero />
         <About />
