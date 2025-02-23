@@ -1,31 +1,47 @@
-// Navbar.jsx
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <motion.nav 
-      initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1 }}
-      className="bg-black/60 border-b border-green-500 text-green-300 p-5 fixed w-full z-50 shadow-lg"
-    >
-      <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-green-400">Portfolio</h1>
-        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden focus:outline-none text-green-400">
-          ☰
-        </button>
-        <ul className={`md:flex gap-6 ${isOpen ? "block" : "hidden"}`}>
-          <li><a href="#about" className="hover:text-green-500">About</a></li>
-          <li><a href="#skills" className="hover:text-green-500">Skills</a></li>
-          <li><a href="#experience" className="hover:text-green-500">Experience</a></li>
-          <li><a href="#education" className="hover:text-green-500">Education</a></li>
-          <li><a href="#projects" className="hover:text-green-500">Projects</a></li>
-          <li><a href="#contact" className="hover:text-green-500">Contact</a></li>
+    <nav className="fixed top-0 left-0 w-full bg-black/90 text-green-300 px-5 py-3 shadow-lg z-50 border-b border-green-500">
+      <div className="flex justify-between items-center max-w-6xl mx-auto">
+        {/* Logo */}
+        <a href="#home" className="text-2xl font-bold neon-glow">Sanath portfolio</a>
+
+        {/* Hamburger Icon for Mobile */}
+        <div className="md:hidden">
+          <button onClick={() => setIsOpen(!isOpen)} className="text-green-300 text-2xl">
+            {isOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+
+        {/* Navigation Links */}
+        <ul className={`md:flex gap-6 ${isOpen ? "block" : "hidden"} absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-black/90 md:bg-transparent py-5 md:py-0 border-t border-green-500 md:border-0 text-center`}>
+          {[
+            { name: "About", link: "#about" },
+            { name: "Skills", link: "#skills" },
+            { name: "Experience", link: "#experience" },
+            { name: "Education", link: "#education" },
+            { name: "Projects", link: "#projects" },
+            { name: "Certifications", link: "#certifications" },
+            { name: "Contact", link: "#contact" }
+          ].map((item, index) => (
+            <motion.li
+              key={index}
+              whileHover={{ scale: 1.1 }}
+              className="md:inline-block block my-2 md:my-0"
+            >
+              <a href={item.link} className="text-lg font-medium hover:text-green-400 transition">
+                {item.name}
+              </a>
+            </motion.li>
+          ))}
         </ul>
       </div>
-    </motion.nav>
+    </nav>
   );
 };
 

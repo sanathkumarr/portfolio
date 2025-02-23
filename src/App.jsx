@@ -1,4 +1,3 @@
-// App.jsx - Main App Component
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -10,23 +9,42 @@ import Certifications from "./components/Certifications";
 import Contact from "./components/contact";
 import Footer from "./components/Footer";
 import BackgroundAnimation from "./components/BackgroundAnimation";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 const App = () => {
+  // Smooth scrolling on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="relative text-green-300 overflow-hidden">
+    <div className="relative text-green-300 overflow-hidden ">
+      {/* Background Animation */}
       <BackgroundAnimation />
-      <div className="relative z-10   min-h-screen">
-        <Navbar />
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <Education />
-        <Projects />
-        <Certifications />
-        <Contact />
-        <Footer />
-      </div>
+
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Main Content */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="relative z-10 flex flex-col gap-16 px-5 md:px-10 mt-16"
+      >
+        <section id="home"><Hero /></section>
+        <section id="about"><About /></section>
+        <section id="skills"><Skills /></section>
+        <section id="experience"><Experience /></section>
+        <section id="education"><Education /></section>
+        <section id="projects"><Projects /></section>
+        <section id="certifications"><Certifications /></section>
+        <section id="contact"><Contact /></section>
+      </motion.div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

@@ -1,19 +1,36 @@
-// Example for About.jsx
 import { motion } from "framer-motion";
-const sectionClass = "py-20 px-5 text-center bg-black/40 border border-green-500 rounded-lg shadow-lg";
+import { FaUserTie } from "react-icons/fa"; // Icon
+
 const About = () => {
   return (
-    <motion.section 
-      initial={{ opacity: 0, x: -50 }}
-      animate={{ opacity: 1, x: 0 }}
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
-      className={sectionClass}
+      className="flex flex-col items-center text-center px-6 py-16 bg-black text-green-300 rounded-lg shadow-lg max-w-4xl mx-auto"
     >
-      <h2 className="text-4xl font-bold text-green-400 mb-5">About Me</h2>
-      <p className="text-lg max-w-3xl mx-auto text-green-200">
-        Experienced React & Next.js Developer skilled in building scalable web applications.
-        Passionate about AI, deep learning, and full-stack development.
+      {/* Animated Icon */}
+      <motion.div
+        whileHover={{ scale: 1.2 }}
+        className="text-5xl text-green-400 mb-4"
+      >
+        <FaUserTie />
+      </motion.div>
+
+      {/* Heading */}
+      <h2 className="text-4xl font-bold glitch-text mb-4">About Me</h2>
+
+      {/* Description */}
+      <p className="text-lg text-green-200 max-w-3xl">
+        I am a Full-Stack Developer & AI Enthusiast with experience in React, Next.js, Python and Java.  
+        Passionate about deep learning, and creating intelligent web solutions.
       </p>
+
+      {/* Hover Effect Line */}
+      <motion.div
+        whileHover={{ scaleX: 1.2 }}
+        className="w-40 h-1 bg-green-500 mt-4 rounded-lg"
+      />
     </motion.section>
   );
 };

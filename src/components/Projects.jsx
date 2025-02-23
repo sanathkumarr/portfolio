@@ -1,33 +1,62 @@
-// Projects.jsx
 import { motion } from "framer-motion";
-const sectionClass = "py-20 px-5 text-center bg-black/40 border border-green-500 rounded-lg shadow-lg";
+import { FaProjectDiagram, FaRobot, FaCloudSun, FaDatabase } from "react-icons/fa";
+
 const projects = [
-  { name: "Rice Plant Disease Detection", description: "Deep learning model with 96.88% accuracy.", tech: "EfficientNetB1, ResNet50, VGG16" },
-  { name: "Real-Time Chat System", description: "React.js with WebSocket integration.", tech: "React.js, Node.js, MongoDB" },
-  { name: "Accounts App", description: "Django app for company tax verification.", tech: "Django, Google API" },
-  { name: "Weather Forecast Website", description: "Real-time weather updates and prediction.", tech: "React.js, OpenWeather API, Deep Learning" }
+  {
+    name: "Rice Plant Disease Detection",
+    description: "Deep learning model with 96.88% accuracy.",
+    tech: "TensorFlow, CNN, EfficientNet",
+    icon: <FaRobot />,
+  },
+  {
+    name: "Real-Time Chat System",
+    description: "Secure & fast chat application.",
+    tech: "React.js, WebSockets, Node.js",
+    icon: <FaProjectDiagram />,
+  },
+  {
+    name: "Django Auth App",
+    description: "Tax verification system using Google API.",
+    tech: "Django, Google OAuth, PostgreSQL",
+    icon: <FaDatabase />,
+  },
+  {
+    name: "Weather Forecast Website",
+    description: "Real-time weather updates & predictions.",
+    tech: "React.js, OpenWeather API, Deep Learning",
+    icon: <FaCloudSun />,
+  },
 ];
 
 const Projects = () => {
   return (
-    <motion.section className={sectionClass}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
+      className="flex flex-col items-center text-center px-6 py-16 bg-black text-green-300 rounded-lg shadow-lg max-w-4xl mx-auto"
     >
-      <h2 className="text-4xl font-bold text-green-400 mb-5">Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+      {/* Heading */}
+      <h2 className="text-4xl font-bold glitch-text mb-6">Projects</h2>
+
+      {/* Projects Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl">
         {projects.map((project, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            className="p-5 bg-green-900/50 border border-green-400 rounded-lg shadow-lg"
+            initial={{ y: 10 }}
+            animate={{ y: [-5, 5, -5] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            whileHover={{ scale: 1.05, boxShadow: "0px 0px 15px rgba(0, 255, 0, 0.7)" }}
+            className="flex flex-col glowing-card items-center p-4 bg-black border border-green-500 rounded-lg shadow-lg transition transform"
           >
-            <h3 className="text-2xl font-semibold">{project.name}</h3>
-            <p className="text-green-200 mt-2">{project.description}</p>
-            <p className="text-green-300 mt-2 font-semibold">Tech: {project.tech}</p>
+            {/* Project Icon */}
+            <div className="text-5xl text-green-400 mb-3">{project.icon}</div>
+
+            {/* Project Name & Description */}
+            <h3 className="text-2xl font-semibold text-green-400">{project.name}</h3>
+            <p className="text-green-200">{project.description}</p>
+            <p className="text-green-400 mt-2 font-semibold">Tech: {project.tech}</p>
           </motion.div>
         ))}
       </div>
